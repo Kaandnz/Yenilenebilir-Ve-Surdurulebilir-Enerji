@@ -1,0 +1,37 @@
+﻿@model IEnumerable<Bloggie.Web.Models.Domain.Topic>
+
+<div class="container">
+    <h2>All Topics</h2>
+    <a asp-action="Add" class="btn btn-dark mb-3">Add Topic</a>
+
+    @if (Model != null && Model.Any())
+    {
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>DisplayName(EN)</th>
+                    <th>DisplayName(TR)</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var t in Model)
+                {
+                    <tr>
+                        <td>@t.Id</td>
+                        <td>@t.DisplayNameEn</td>
+                        <td>@t.DisplayNameTr</td>
+                        <td>
+                            <a asp-action="Edit" asp-route-id="@t.Id" class="btn btn-sm btn-primary">Edit</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <p>No topics found.</p>
+    }
+</div>

@@ -1,0 +1,65 @@
+﻿@model List<Bloggie.Web.Models.Domain.BlogPost>
+@using Bloggie.Web.Models.Domain
+
+@{
+    Layout = "_TopicsLayout";
+    var topic = ViewBag.Topic as Topic;
+    string currentCulture = Thread.CurrentThread.CurrentUICulture.TwoLetterISOLanguageName;
+    var displayName = (currentCulture == "tr") ? topic.DisplayNameTr : topic.DisplayNameEn;
+    var backgroundUrl = topic?.FeaturedImageUrl ?? "default-image-url";
+}
+
+<div class="flex-grow-1 d-flex flex-column">
+    <div class="descriptions mt-2" style="
+        height: 400px;
+        background-image: url('@backgroundUrl');
+        background-size: cover;
+        background-position: center;
+        border-radius: 15px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        display: flex;
+        align-items: flex-end;
+        justify-content: center;
+        padding-bottom: 20px;">
+
+        <div style="
+            background-color: rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(5px);
+            padding: 15px 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);">
+            <h1 class="display-5 text-dark text-center">Explore the World of @displayName</h1>
+        </div>
+    </div>
+
+    <div class="content flex-grow-1 p-4">
+        <div class="container shadow-lg rounded bg-white">
+            <div class="row">
+                @if (Model != null && Model.Any())
+                {
+                    foreach (var blogPost in Model)
+                    {
+                        <div class="col-lg-4 col-md-6 col-sm-12 mb-4 mt-3">
+                            <div class="card h-100">
+                                <img src="@blogPost.FeaturedImageUrl" class="card-img-top img-fluid" style="height: 180px; object-fit: cover;" />
+                                <div class="card-body p-3">
+                                    <h5 class="card-title">@blogPost.Heading</h5>
+                                    <small class="text-muted">Author: @blogPost.Author</small>
+                                    <p class="card-text mt-2 text-truncate">@blogPost.ShortDescription</p>
+                                    <a class="btn btn-sm btn-dark"
+                                       asp-controller="Blogs"
+                                       asp-action="Index"
+                                       asp-route-urlHandle="@blogPost.UrlHandle">Read More</a>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                }
+                else
+                {
+                    <p>No blog posts found for this topic.</p>
+                }
+            </div>
+        </div>
+    </div>
+</div>

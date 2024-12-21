@@ -1,0 +1,167 @@
+﻿@model Bloggie.Web.Models.ViewModels.EditBlogPostRequest
+
+<div class="pt-4">
+    <div class="container">
+        <h1>@Resource.EditPost</h1>
+    </div>
+</div>
+
+<div class="container pb-5 pt-3">
+    @if (Model != null)
+    {
+        <form method="post" asp-action="Edit" asp-controller="AdminBlogPosts">
+            @Html.AntiForgeryToken()
+
+            <!-- Validation Summary -->
+            <div asp-validation-summary="All" class="text-danger"></div>
+
+            <!-- Hidden Input for Id -->
+            <input type="hidden" asp-for="Id" />
+
+            <div class="mb-3">
+                <label class="form-label">@Resource.Heading</label>
+                <input type="text" class="form-control" id="heading" asp-for="Heading" />
+                <span class="text-danger" asp-validation-for="Heading"></span>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">@Resource.PageTitle</label>
+                <input type="text" class="form-control" id="pageTitle" asp-for="PageTitle" />
+                <span class="text-danger" asp-validation-for="PageTitle"></span>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">@Resource.Content</label>
+                <textarea class="form-control" id="content" asp-for="Content"></textarea>
+                <span class="text-danger" asp-validation-for="Content"></span>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">@Resource.ShortDsc</label>
+                <input type="text" class="form-control" id="shortDescription" asp-for="ShortDescription" />
+                <span class="text-danger" asp-validation-for="ShortDescription"></span>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">@Resource.UploadImg</label>
+                <input type="file" id="featuredImageUpload" class="form-control" />
+
+                @if (Model.FeaturedImageUrl != null)
+                {
+                    <img src="@Model.FeaturedImageUrl" id="featuredImageDisplay" style="display:block;width: 300px;" />
+                }
+                else
+                {
+                    <img src="" id="featuredImageDisplay" style="display:none;width: 300px;" />
+                }
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">@Resource.ImageURL</label>
+                <input type="text" class="form-control" id="featuredImageUrl" asp-for="FeaturedImageUrl" />
+                <span class="text-danger" asp-validation-for="FeaturedImageUrl"></span>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">@Resource.URLHandle</label>
+                <input type="text" class="form-control" id="urlHandle" asp-for="UrlHandle" />
+                <span class="text-danger" asp-validation-for="UrlHandle"></span>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">@Resource.PublishedDate</label>
+                <input type="date" class="form-control" id="publishedDate" asp-for="PublishedDate" />
+                <span class="text-danger" asp-validation-for="PublishedDate"></span>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">@Resource.Author</label>
+                <input type="text" class="form-control" id="author" asp-for="Author" />
+                <span class="text-danger" asp-validation-for="Author"></span>
+            </div>
+
+            <div class="form-check mb-3">
+                <input class="form-check-input" type="checkbox" id="visible" asp-for="Visible">
+                <label class="form-check-label">
+                    @Resource.Visible
+                </label>
+                <span class="text-danger" asp-validation-for="Visible"></span>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">@Resource.Tags</label>
+                <select class="form-select" asp-items="@Model.Tags" asp-for="SelectedTags" multiple>
+                </select>
+                <span class="text-danger" asp-validation-for="SelectedTags"></span>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Topic</label>
+                <select class="form-select" asp-for="SelectedTopicId" asp-items="Model.Topics">
+                    <option value="">-- Select Topic --</option>
+                </select>
+                <span class="text-danger" asp-validation-for="SelectedTopicId"></span>
+            </div>
+
+            <div class="mb-3 d-flex">
+                <button type="submit" class="btn btn-dark">@Resource.Update</button>
+
+                <!-- Delete için ayrı form kullanmak daha güvenli -->
+                <form method="post" asp-action="Delete" asp-controller="AdminBlogPosts" class="ms-2">
+                    @Html.AntiForgeryToken()
+                    <input type="hidden" asp-for="Id" />
+                    <button type="submit" class="btn btn-danger">
+                        @Resource.Delete
+                    </button>
+                </form>
+            </div>
+        </form>
+    }
+    else
+    {
+        <p>@Resource.NoPostFound</p>
+    }
+</div>
+
+@section Scripts {
+    <script>
+        var editor = new FroalaEditor('#content', {
+            imageUploadURL: '/api/images'
+        });
+
+        const featuredUploadElement = document.getElementById('featuredImageUpload');
+        const featuredImageUrlElement = document.getElementById('featuredImageUrl');
+        const featuredImageDisplayElement = document.getElementById('featuredImageDisplay');
+
+        async function uploadFeaturedImage(e) {
+            console.log(e.target.files[0]);
+
+            let data = new FormData();
+            data.append('file', e.target.files[0]);
+
+            try {
+                let response = await fetch('/api/images', {
+                    method: 'POST',
+                    headers: {
+                        'Accept': '*/*',
+                    },
+                    body: data
+                });
+
+                if (!response.ok) {
+                    throw new Error('Image upload failed');
+                }
+
+                let result = await response.json();
+                featuredImageUrlElement.value = result.link;
+                featuredImageDisplayElement.src = result.link;
+                featuredImageDisplayElement.style.display = 'block';
+            }
+            catch (error) {
+                console.error('Error uploading image:', error);
+            }
+        }
+
+        featuredUploadElement.addEventListener('change', uploadFeaturedImage);
+    </script>
+}

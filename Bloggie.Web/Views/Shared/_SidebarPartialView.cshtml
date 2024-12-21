@@ -1,0 +1,25 @@
+﻿@using Bloggie.Web.Repositories
+@inject ITopicRepository topicRepository
+
+
+<nav id="sidebarMenu" class="sidebar bg-white border-end flex-shrink-0" style="width: 250px;">
+    <div class="position-sticky">
+        <div class="list-group list-group-flush mx-3 mt-4">
+           
+            
+
+            @{
+                var topics = await topicRepository.GetAllAsync();
+                string currentCulture = Thread.CurrentThread.CurrentUICulture.TwoLetterISOLanguageName;
+            }
+
+            <div class="list-group">
+                @foreach (var t in topics)
+                {
+                    var displayName = (currentCulture == "tr") ? t.DisplayNameTr : t.DisplayNameEn;
+                    <a asp-controller="Topics" asp-action="Details" asp-route-id="@t.Id" class="list-group-item">@displayName</a>
+                }
+            </div>
+        </div>
+    </div>
+</nav>

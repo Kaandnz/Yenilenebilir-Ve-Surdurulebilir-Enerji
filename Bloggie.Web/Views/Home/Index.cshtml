@@ -1,0 +1,89 @@
+﻿@model Bloggie.Web.Models.ViewModels.HomeViewModel
+
+
+
+@{
+    ViewData["Title"] = @Resource.HomePage;
+}
+
+<div class="d-flex flex-column min-vh-100">
+    <div class="d-flex flex-grow-1">
+        <!-- Sidebar -->
+        <partial name="_SidebarPartialView" />
+
+        <!-- Main Content -->
+        <div class="content flex-grow-1 p-4">
+            <!-- Carousel -->
+            <div id="carouselExampleIndicators" class="carousel slide mb-5" data-bs-ride="carousel">
+                <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="@Resource.WaterEnergy"></button>
+                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="@Resource.WindEnergy"></button>
+                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="@Resource.SolarEnergy"></button>
+                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3" aria-label="@Resource.GeothermalEnergy"></button>
+                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="4" aria-label="@Resource.BiomassEnergy"></button>
+                </div>
+                <div class="carousel-inner">
+                    @foreach (var (topic, index) in new List<(string, int)>
+                    {
+                    ("WaterEnergy", 0),
+                    ("WindEnergy", 1),
+                    ("SolarEnergy", 2),
+                    ("GeothermalEnergy", 3),
+                    ("BiomassEnergy", 4)
+                    })
+
+                    {
+                        <div class="carousel-item @(index == 0 ? "active" : "")">
+                            <a asp-controller="Topics" asp-action="BlogPostsByTopic" asp-route-topic="@topic">
+                                <img src="https://res-console.cloudinary.com/dq0ymmgg5/media_explorer_thumbnails/@(topic switch
+                                    {
+                                        "WaterEnergy" => "504ab7d1e96564a4f90d3f7139bfa718",
+                                        "WindEnergy" => "c296ef0e512052380a4e9ebad20df81f",
+                                        "SolarEnergy" => "5fabfe0d602fccd79365d2fbabcbef8f",
+                                        "GeothermalEnergy" => "39f002ce549a2deaa564232bfe15d139",
+                                        "BiomassEnergy" => "d94f5b0f90a73555a3088ad201aa23b8",
+                                        _ => "default-thumbnail"
+                                    })/detailed"
+                                     class="d-block w-100 img-fluid rounded-3 shadow"
+                                     alt="@topic.Replace("Energy", " Energy")"
+                                     style="height: 400px; object-fit: cover;">
+                            </a>
+                            <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-50 rounded p-2">
+                                <h5>@topic.Replace("Energy", " Energy")</h5>
+                            </div>
+                        </div>
+                    }
+                </div>
+
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+
+            <!-- Welcome Section -->
+            <section class="py-5 bg-light rounded-3 shadow-sm">
+                <div class="container px-4">
+                    <div class="row align-items-center g-5">
+                        <div class="col-lg-8">
+                            <h1 class="display-5 fw-bold">
+                                Welcome
+                            </h1>
+                            <p class="lead">
+                              Discover the future of renewable energy sources! Learn about various renewable energy types including solar, wind, geothermal, biomass, and water energy. Get insights into how these sources are changing the world and shaping a sustainable future.
+                            </p>
+                            <a href="#topics" class="btn btn-primary btn-lg">Explore Topics</a>
+                        </div>
+                        <div class="col-lg-4">
+                            <img src="https://via.placeholder.com/400x300" class="img-fluid rounded-3" alt="Renewable Energy Illustration">
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</div>

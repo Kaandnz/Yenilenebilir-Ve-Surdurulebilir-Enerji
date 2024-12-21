@@ -1,0 +1,42 @@
+﻿@model Bloggie.Web.Models.ViewModels.EditTopicRequest
+
+<div class="container">
+    <h2>Edit Topic</h2>
+
+    @if (Model != null)
+    {
+        <form method="post">
+            <input type="hidden" asp-for="Id" />
+
+            <div class="mb-3">
+                <label>DisplayName(EN)</label>
+                <input class="form-control" asp-for="DisplayNameEn" />
+                <span class="text-danger" asp-validation-for="DisplayNameEn"></span>
+            </div>
+
+            <div class="mb-3">
+                <label>DisplayName(TR)</label>
+                <input class="form-control" asp-for="DisplayNameTr" />
+                <span class="text-danger" asp-validation-for="DisplayNameTr"></span>
+            </div>
+
+            <div class="mb-3">
+                <label>Featured Image URL</label>
+                <input class="form-control" asp-for="FeaturedImageUrl" />
+            </div>
+
+            <div class="mb-3 d-flex">
+                <button type="submit" class="btn btn-primary">Save</button>
+
+                <form method="post" asp-action="Delete" class="ms-2">
+                    <input type="hidden" asp-for="Id" />
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                </form>
+            </div>
+        </form>
+    }
+    else
+    {
+        <p>Topic not found!</p>
+    }
+</div>

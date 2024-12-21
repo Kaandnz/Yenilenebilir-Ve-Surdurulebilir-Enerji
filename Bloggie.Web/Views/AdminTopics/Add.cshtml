@@ -1,0 +1,26 @@
+﻿@model Bloggie.Web.Models.ViewModels.AddTopicRequest
+
+<div class="container">
+    <h2>Add New Topic</h2>
+
+    <form method="post">
+        <div class="mb-3">
+            <label class="form-label">DisplayName (EN)</label>
+            <input class="form-control" asp-for="DisplayNameEn" />
+            <span class="text-danger" asp-validation-for="DisplayNameEn"></span>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">DisplayName (TR)</label>
+            <input class="form-control" asp-for="DisplayNameTr" />
+            <span class="text-danger" asp-validation-for="DisplayNameTr"></span>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Featured Image URL</label>
+            <input class="form-control" asp-for="FeaturedImageUrl" />
+        </div>
+
+        <button type="submit" class="btn btn-dark">Save</button>
+    </form>
+</div>

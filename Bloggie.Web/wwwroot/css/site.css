@@ -1,0 +1,91 @@
+
+
+
+html {
+    font-size: 14px;
+}
+
+@media (min-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+    box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+
+.blog-details-content img {
+    max-width: 100%;
+}
+
+
+
+
+.navbar {
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Sidebar */
+.sidebar {
+    position: sticky;
+    top: 58px; /* Navbar'ýn yüksekliði kadar boþluk býrakýlýr */
+    height: calc(100vh - 58px); /* Navbar hariç kalan alaný kapla */
+    width: 240px;
+    overflow-y: auto;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+    /* Sidebar Aktif Eleman */
+    .sidebar .list-group-item.active {
+        background-color: #4caf50;
+        color: #fff;
+        border-radius: 5px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    }
+
+/* Main Content */
+.content {
+    overflow-y: auto;
+    padding: 20px;
+}
+
+
+.footer {
+    background-color: #343a40; /* Daha koyu bir arka plan */
+    color: #adb5bd; /* Daha yumuþak bir metin rengi */
+}
+
+    .footer h5 {
+        color: #ffffff; /* Baþlýklar için beyaz renk */
+        font-size: 1.2rem;
+        font-weight: 600;
+        margin-bottom: 15px;
+    }
+
+    .footer a {
+        color: #adb5bd; /* Link rengi */
+        text-decoration: none;
+    }
+
+        .footer a:hover {
+            color: #ffffff; /* Hover ile linklerin rengi deðiþir */
+            text-decoration: underline;
+        }
+
+    .footer .social-icons a {
+        font-size: 1.2rem; /* Sosyal medya ikon boyutu */
+        margin-right: 10px;
+    }
