@@ -88,32 +88,39 @@
                 <span class="text-danger" asp-validation-for="Visible"></span>
             </div>
 
-            <div class="mb-3">
-                <label class="form-label">@Resource.Tags</label>
-                <select class="form-select" asp-items="@Model.Tags" asp-for="SelectedTags" multiple>
-                </select>
-                <span class="text-danger" asp-validation-for="SelectedTags"></span>
-            </div>
+            
 
             <div class="mb-3">
-                <label class="form-label">Topic</label>
+                <label class="form-label">@Resource.Topics</label>
                 <select class="form-select" asp-for="SelectedTopicId" asp-items="Model.Topics">
-                    <option value="">-- Select Topic --</option>
+                    <option value="">-- @Resource.SelectTopic --</option>
                 </select>
                 <span class="text-danger" asp-validation-for="SelectedTopicId"></span>
+            </div>
+
+            <div class="form-group mb-3">
+                <label>@Resource.Language: </label>
+                <div class="form-check form-check-inline ms-2">
+                    <input class="form-check-input" type="radio" id="english" name="Lang" value="en" checked>
+                    <label class="form-check-label" for="english">@Resource.English</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" id="turkish" name="Lang" value="tr">
+                    <label class="form-check-label" for="turkish">@Resource.Turkish</label>
+                </div>
+                <span class="text-danger" asp-validation-for="Lang"></span>
             </div>
 
             <div class="mb-3 d-flex">
                 <button type="submit" class="btn btn-dark">@Resource.Update</button>
 
-                <!-- Delete için ayrı form kullanmak daha güvenli -->
-                <form method="post" asp-action="Delete" asp-controller="AdminBlogPosts" class="ms-2">
-                    @Html.AntiForgeryToken()
-                    <input type="hidden" asp-for="Id" />
-                    <button type="submit" class="btn btn-danger">
-                        @Resource.Delete
-                    </button>
-                </form>
+                <button type="submit"
+                        class="btn btn-danger ms-2"
+                        asp-area=""
+                        asp-controller="AdminBlogPosts"
+                        asp-action="Delete">
+                    @Resource.Delete
+                </button>
             </div>
         </form>
     }

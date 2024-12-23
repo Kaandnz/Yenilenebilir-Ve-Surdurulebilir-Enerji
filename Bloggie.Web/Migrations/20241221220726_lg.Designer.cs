@@ -4,6 +4,7 @@ using Bloggie.Web.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Bloggie.Web.Migrations
 {
     [DbContext(typeof(BloggieDbContext))]
-    partial class BloggieDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241221220726_lg")]
+    partial class lg
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -59,7 +62,7 @@ namespace Bloggie.Web.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Lang")
+                    b.Property<string>("Language")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -135,39 +138,6 @@ namespace Bloggie.Web.Migrations
                     b.HasIndex("BlogPostId");
 
                     b.ToTable("BlogPostLike");
-                });
-
-            modelBuilder.Entity("Bloggie.Web.Models.Domain.HomePageCarouselImage", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<int>("DisplayOrder")
-                        .HasColumnType("int");
-
-                    b.Property<string>("ImageUrl")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("HomePageCarouselImages");
-                });
-
-            modelBuilder.Entity("Bloggie.Web.Models.Domain.HomePageSetting", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("BodyHtml")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("HomePageSettings");
                 });
 
             modelBuilder.Entity("Bloggie.Web.Models.Domain.Tag", b =>

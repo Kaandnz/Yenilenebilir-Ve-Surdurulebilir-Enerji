@@ -65,18 +65,25 @@
             </label>
         </div>
 
+      
         <div class="mb-3">
-            <label class="form-label">@Resource.Tags</label>
-            <select class="form-select"
-                    asp-items="@Model.Tags"
-                    asp-for="SelectedTags">
+            <label class="form-label">@Resource.Topics</label>
+            <select class="form-select" asp-for="SelectedTopicId" asp-items="Model.Topics">
+                <option value="">-- @Resource.SelectTopic --</option>
             </select>
         </div>
-        <div class="mb-3">
-            <label class="form-label">Topic</label>
-            <select class="form-select" asp-for="SelectedTopicId" asp-items="Model.Topics">
-                <option value="">-- Select Topic --</option>
-            </select>
+
+        <div class="form-group mb-3" >
+            <label>@Resource.Language: </label>
+            <div class="form-check form-check-inline ms-2">
+                <input class="form-check-input" type="radio" id="english" name="Lang" value="en" checked>
+                <label class="form-check-label" for="english">@Resource.English</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" id="turkish" name="Lang" value="tr">
+                <label class="form-check-label" for="turkish">@Resource.Turkish</label>
+            </div>
+            <span class="text-danger" asp-validation-for="Lang"></span>
         </div>
 
 

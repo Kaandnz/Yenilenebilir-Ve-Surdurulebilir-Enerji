@@ -3,8 +3,8 @@
 @inject ITopicRepository topicRepository
 
 @{
-    // Üst layout: Tüm ortak css/js navbar vb.
     Layout = "_Layout";
+
 }
 
 @{
@@ -20,7 +20,7 @@
 
 
         <!-- Main Content Area -->
-        <div class="flex-grow-1 d-flex flex-column">
+        <div class="flex-grow-1 d-flex flex-column bg-secondary bg-opacity-10">
             <!-- Bu kısımda asıl sayfa içeriği RenderBody ile gelecek -->
             <main class="content flex-grow-1 p-4">
                 @RenderBody()
@@ -29,11 +29,7 @@
     </div>
 </div>
 
-<footer class="footer bg-light text-muted text-center">
-    <div class="container">
-        &copy; 2024 - Renewable and Sustainable Energy
-    </div>
-</footer>
+
 
 @section Scripts {
     @RenderSection("Scripts", required: false)

@@ -75,7 +75,8 @@ namespace Bloggie.Web.Controllers
                 PublishedDate = addBlogPostRequest.PublishedDate,
                 Author = addBlogPostRequest.Author,
                 Visible = addBlogPostRequest.Visible,
-                TopicId = addBlogPostRequest.SelectedTopicId
+                TopicId = addBlogPostRequest.SelectedTopicId,
+                Lang = addBlogPostRequest.Lang
             };
 
             await blogPostRepository.AddAsync(blogPost);
@@ -101,9 +102,6 @@ namespace Bloggie.Web.Controllers
             var topics = await topicRepository.GetAllAsync();
             var tags = await tagRepository.GetAllAsync();
 
-            // Seçili tag ID'lerini alıyoruz
-            var selectedTagIds = new HashSet<Guid>(blogPost.Tags.Select(t => t.Id));
-
             var model = new EditBlogPostRequest
             {
                 Id = blogPost.Id,
@@ -124,25 +122,23 @@ namespace Bloggie.Web.Controllers
                     Value = t.Id.ToString(),
                     Selected = (t.Id == blogPost.TopicId)
                 }),
+                Lang = blogPost.Lang,
 
-                // Tags listesi ve seçili tag'lar
-                Tags = tags.Select(tag => new SelectListItem
-                {
-                    Text = tag.Name,
-                    Value = tag.Id.ToString(),
-                    Selected = selectedTagIds.Contains(tag.Id) // Doğru karşılaştırma
-                })
+
+                Tags = tags.Select(tag => new SelectListItem { Text = tag.Name, Value = tag.Id.ToString() }),
+                
             };
 
             return View(model);
         }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(EditBlogPostRequest editBlogPostRequest)
         {
             if (!ModelState.IsValid)
             {
-                // ModelState hatalarını logla
+                // ModelState hatalarını logla ve formu yeniden doldur
                 var errors = ModelState.Values.SelectMany(v => v.Errors);
                 foreach (var error in errors)
                 {
@@ -153,9 +149,6 @@ namespace Bloggie.Web.Controllers
                 var topics = await topicRepository.GetAllAsync();
                 var tags = await tagRepository.GetAllAsync();
 
-                // Seçili tag ID'lerini tekrar al
-                var selectedTagIds = new HashSet<Guid>(blogPostRepository.GetAsync(editBlogPostRequest.Id).Result.Tags.Select(t => t.Id));
-
                 editBlogPostRequest.Topics = topics.Select(t => new SelectListItem
                 {
                     Text = t.DisplayNameEn,
@@ -163,54 +156,55 @@ namespace Bloggie.Web.Controllers
                     Selected = (t.Id == editBlogPostRequest.SelectedTopicId)
                 });
 
-                editBlogPostRequest.Tags = tags.Select(tag => new SelectListItem
-                {
-                    Text = tag.Name,
-                    Value = tag.Id.ToString(),
-                    Selected = selectedTagIds.Contains(tag.Id)
-                });
+                editBlogPostRequest.Tags = tags.Select(tag => new SelectListItem { Text = tag.Name, Value = tag.Id.ToString() });
 
                 return View(editBlogPostRequest);
             }
 
-            // Tag’ları yok sayıyoruz, blogPost’a dahil etmiyoruz.
-            var blogPostDomainModel = new BlogPost
+            // Var olan blog post'u veritabanından çek
+            var existingBlogPost = await blogPostRepository.GetAsync(editBlogPostRequest.Id);
+            if (existingBlogPost == null)
             {
-                Id = editBlogPostRequest.Id,
-                Heading = editBlogPostRequest.Heading,
-                PageTitle = editBlogPostRequest.PageTitle,
-                Content = editBlogPostRequest.Content,
-                Author = editBlogPostRequest.Author,
-                ShortDescription = editBlogPostRequest.ShortDescription,
-                FeaturedImageUrl = editBlogPostRequest.FeaturedImageUrl,
-                PublishedDate = editBlogPostRequest.PublishedDate,
-                UrlHandle = editBlogPostRequest.UrlHandle,
-                Visible = editBlogPostRequest.Visible,
-                TopicId = editBlogPostRequest.SelectedTopicId
-            };
-
-            var updatedBlog = await blogPostRepository.UpdateAsync(blogPostDomainModel);
-
-            if (updatedBlog == null)
-            {
-                return RedirectToAction("Edit", new { id = editBlogPostRequest.Id });
+                return NotFound();
             }
+
+            // Özellikleri güncelle
+            existingBlogPost.Heading = editBlogPostRequest.Heading;
+            existingBlogPost.PageTitle = editBlogPostRequest.PageTitle;
+            existingBlogPost.Content = editBlogPostRequest.Content;
+            existingBlogPost.ShortDescription = editBlogPostRequest.ShortDescription;
+            existingBlogPost.FeaturedImageUrl = editBlogPostRequest.FeaturedImageUrl;
+            existingBlogPost.UrlHandle = editBlogPostRequest.UrlHandle;
+            existingBlogPost.PublishedDate = editBlogPostRequest.PublishedDate;
+            existingBlogPost.Author = editBlogPostRequest.Author;
+            existingBlogPost.Visible = editBlogPostRequest.Visible;
+            existingBlogPost.TopicId = editBlogPostRequest.SelectedTopicId;
+            existingBlogPost.Lang = editBlogPostRequest.Lang;
+
+            // Güncellemeyi kaydet
+            await blogPostRepository.UpdateAsync(existingBlogPost);
 
             return RedirectToAction("List");
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Delete(EditBlogPostRequest editBlogPostRequest)
         {
+            // Talk to repository to delete this blog post and tags
             var deletedBlogPost = await blogPostRepository.DeleteAsync(editBlogPostRequest.Id);
 
             if (deletedBlogPost != null)
             {
+                // Show success notification
                 return RedirectToAction("List");
             }
 
+            // Show error notification
             return RedirectToAction("Edit", new { id = editBlogPostRequest.Id });
         }
+
+        
+
+
     }
 }

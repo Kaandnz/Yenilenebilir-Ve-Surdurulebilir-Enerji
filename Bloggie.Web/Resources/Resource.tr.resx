@@ -117,14 +117,26 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AddCarouselImages" xml:space="preserve">
+    <value>Karusel Resmi Yükle</value>
+  </data>
+  <data name="AddNewImages" xml:space="preserve">
+    <value>Yeni Resim Ekle</value>
+  </data>
   <data name="AddNewPost" xml:space="preserve">
     <value>Yeni Paylaşım Ekle</value>
   </data>
   <data name="AddNewTag" xml:space="preserve">
     <value>Yeni Etiket Ekle - Yönetici</value>
   </data>
+  <data name="AddNewTopics" xml:space="preserve">
+    <value>Yeni Konu Ekle</value>
+  </data>
   <data name="AddTag" xml:space="preserve">
     <value>Yeni Etiket Ekle</value>
+  </data>
+  <data name="AddTopic" xml:space="preserve">
+    <value>Konu Ekle</value>
   </data>
   <data name="Admin" xml:space="preserve">
     <value>Yönetici</value>
@@ -135,6 +147,9 @@
   <data name="AllPosts" xml:space="preserve">
     <value>Tüm Paylaşımlar</value>
   </data>
+  <data name="AllTopics" xml:space="preserve">
+    <value>Tüm Konular</value>
+  </data>
   <data name="AllUsers" xml:space="preserve">
     <value>Tüm Kullanıcılar</value>
   </data>
@@ -143,6 +158,12 @@
   </data>
   <data name="BiomassEnergy" xml:space="preserve">
     <value>Biyokütle Enerjisi</value>
+  </data>
+  <data name="CarouselImages" xml:space="preserve">
+    <value>Karusel Resimleri</value>
+  </data>
+  <data name="ChangeImage" xml:space="preserve">
+    <value>Resimi Değiştir</value>
   </data>
   <data name="Close" xml:space="preserve">
     <value>Kapat</value>
@@ -159,11 +180,29 @@
   <data name="CreateUser" xml:space="preserve">
     <value>Kullanıcı Oluştur</value>
   </data>
+  <data name="CurrentImage" xml:space="preserve">
+    <value>Şu Anki Resim</value>
+  </data>
   <data name="Delete" xml:space="preserve">
     <value>Sil</value>
   </data>
+  <data name="DisplayName" xml:space="preserve">
+    <value>Görüntülenme Adı</value>
+  </data>
+  <data name="DisplayOrder" xml:space="preserve">
+    <value>Görüntülenme Sırası</value>
+  </data>
   <data name="Edit" xml:space="preserve">
     <value>Düzenle</value>
+  </data>
+  <data name="EditCarouselImage" xml:space="preserve">
+    <value>Karusel Resmini Düzenle</value>
+  </data>
+  <data name="EditHomePageText" xml:space="preserve">
+    <value>Ana Sayfa Yazı Düzeni</value>
+  </data>
+  <data name="EditHomeText" xml:space="preserve">
+    <value>Ana Sayfa Yazısını Düzenle</value>
   </data>
   <data name="EditPost" xml:space="preserve">
     <value>Paylaşımı Düzenle - Yönetici</value>
@@ -171,8 +210,14 @@
   <data name="EditTag" xml:space="preserve">
     <value>Etiketi Düzenle - Yönetici</value>
   </data>
+  <data name="EditTopic" xml:space="preserve">
+    <value>Konuyu Düzenle</value>
+  </data>
   <data name="Email" xml:space="preserve">
     <value>E-Posta</value>
+  </data>
+  <data name="English" xml:space="preserve">
+    <value>İngilizce</value>
   </data>
   <data name="GeothermalEnergy" xml:space="preserve">
     <value>Jeotermal Enerji</value>
@@ -186,11 +231,17 @@
   <data name="ImageURL" xml:space="preserve">
     <value>Resim URL</value>
   </data>
+  <data name="Language" xml:space="preserve">
+    <value>Dil</value>
+  </data>
   <data name="Login" xml:space="preserve">
     <value>Giriş Yap</value>
   </data>
   <data name="Logout" xml:space="preserve">
     <value>Çıkış Yap</value>
+  </data>
+  <data name="ManageCarousel" xml:space="preserve">
+    <value>Karuseli Yönet</value>
   </data>
   <data name="NewPost" xml:space="preserve">
     <value>Yeni Paylaşım Ekle - Yönetici</value>
@@ -213,6 +264,9 @@
   <data name="Password" xml:space="preserve">
     <value>Şifre</value>
   </data>
+  <data name="Preview" xml:space="preserve">
+    <value>Ön Gösterim</value>
+  </data>
   <data name="Previous" xml:space="preserve">
     <value>Önceki</value>
   </data>
@@ -221,6 +275,9 @@
   </data>
   <data name="PublishedDate" xml:space="preserve">
     <value>Yayınlanma Tarihi</value>
+  </data>
+  <data name="ReadMore" xml:space="preserve">
+    <value>Okumaya Devam Et</value>
   </data>
   <data name="Register" xml:space="preserve">
     <value>Kayıt Ol</value>
@@ -236,6 +293,12 @@
   </data>
   <data name="Search" xml:space="preserve">
     <value>Ara</value>
+  </data>
+  <data name="SelectImages" xml:space="preserve">
+    <value>Resim Seç</value>
+  </data>
+  <data name="SelectTopic" xml:space="preserve">
+    <value>Konu Seç</value>
   </data>
   <data name="ShortDsc" xml:space="preserve">
     <value>Kısa Açıklama</value>
@@ -266,6 +329,12 @@
   </data>
   <data name="TheFutureOfRenewableEnergySources" xml:space="preserve">
     <value>Yenilenebilir Enerji Kaynaklarının Geleceği</value>
+  </data>
+  <data name="Topics" xml:space="preserve">
+    <value>Konular</value>
+  </data>
+  <data name="Turkish" xml:space="preserve">
+    <value>Türkçe</value>
   </data>
   <data name="Update" xml:space="preserve">
     <value>Güncelle</value>

@@ -1,8 +1,13 @@
 ﻿@model IEnumerable<Bloggie.Web.Models.Domain.Topic>
 
-<div class="container">
-    <h2>All Topics</h2>
-    <a asp-action="Add" class="btn btn-dark mb-3">Add Topic</a>
+<div class="container mt-3">
+    <h2>@Resource.AllTopics - @Resource.Admin</h2>
+
+        <div class="container d-flex justify-content-end pe-4">
+            <a asp-action="Add" class="btn btn-dark mb-3">@Resource.AddTopic</a>
+        </div>
+    
+    
 
     @if (Model != null && Model.Any())
     {

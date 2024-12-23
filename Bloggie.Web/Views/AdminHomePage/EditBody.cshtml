@@ -1,0 +1,25 @@
+﻿@model Bloggie.Web.Models.ViewModels.EditHomePageBodyRequest
+
+<div class="container my-5">
+    <h2 class="mb-5">@Resource.EditHomePageText - @Resource.Admin</h2>
+
+    <form method="post" asp-action="EditBody">
+        <input type="hidden" asp-for="Id" />
+
+        <div class="mb-3">
+            
+            <textarea class="form-control" asp-for="BodyHtml" id="bodyHtml"></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-primary">@Resource.Save</button>
+    </form>
+</div>
+
+@section Scripts {
+    <script>
+        // Froala, CKEditor veya başka bir WYSIWYG Editor'ü burada başlatabilirsiniz
+        var editor = new FroalaEditor('#bodyHtml', {
+            imageUploadURL: '/api/images'
+        });
+    </script>
+}

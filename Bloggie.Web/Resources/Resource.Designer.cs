@@ -61,6 +61,24 @@ namespace Bloggie.Web.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add Carousel Images.
+        /// </summary>
+        public static string AddCarouselImages {
+            get {
+                return ResourceManager.GetString("AddCarouselImages", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add New Images.
+        /// </summary>
+        public static string AddNewImages {
+            get {
+                return ResourceManager.GetString("AddNewImages", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Add New Post.
         /// </summary>
         public static string AddNewPost {
@@ -79,11 +97,29 @@ namespace Bloggie.Web.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add New Topic.
+        /// </summary>
+        public static string AddNewTopics {
+            get {
+                return ResourceManager.GetString("AddNewTopics", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Add Tag.
         /// </summary>
         public static string AddTag {
             get {
                 return ResourceManager.GetString("AddTag", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add Topic.
+        /// </summary>
+        public static string AddTopic {
+            get {
+                return ResourceManager.GetString("AddTopic", resourceCulture);
             }
         }
         
@@ -115,6 +151,15 @@ namespace Bloggie.Web.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to All Topics.
+        /// </summary>
+        public static string AllTopics {
+            get {
+                return ResourceManager.GetString("AllTopics", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to All Users.
         /// </summary>
         public static string AllUsers {
@@ -138,6 +183,24 @@ namespace Bloggie.Web.Resources {
         public static string BiomassEnergy {
             get {
                 return ResourceManager.GetString("BiomassEnergy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Carousel Images.
+        /// </summary>
+        public static string CarouselImages {
+            get {
+                return ResourceManager.GetString("CarouselImages", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Change Image.
+        /// </summary>
+        public static string ChangeImage {
+            get {
+                return ResourceManager.GetString("ChangeImage", resourceCulture);
             }
         }
         
@@ -187,6 +250,15 @@ namespace Bloggie.Web.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Current Image.
+        /// </summary>
+        public static string CurrentImage {
+            get {
+                return ResourceManager.GetString("CurrentImage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Delete.
         /// </summary>
         public static string Delete {
@@ -196,11 +268,56 @@ namespace Bloggie.Web.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Display Name.
+        /// </summary>
+        public static string DisplayName {
+            get {
+                return ResourceManager.GetString("DisplayName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Display Order.
+        /// </summary>
+        public static string DisplayOrder {
+            get {
+                return ResourceManager.GetString("DisplayOrder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Edit.
         /// </summary>
         public static string Edit {
             get {
                 return ResourceManager.GetString("Edit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Edit Carousel Image.
+        /// </summary>
+        public static string EditCarouselImage {
+            get {
+                return ResourceManager.GetString("EditCarouselImage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Edit Home Page Text.
+        /// </summary>
+        public static string EditHomePageText {
+            get {
+                return ResourceManager.GetString("EditHomePageText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Edit Home Text.
+        /// </summary>
+        public static string EditHomeText {
+            get {
+                return ResourceManager.GetString("EditHomeText", resourceCulture);
             }
         }
         
@@ -223,11 +340,29 @@ namespace Bloggie.Web.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Edit Topic.
+        /// </summary>
+        public static string EditTopic {
+            get {
+                return ResourceManager.GetString("EditTopic", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Email.
         /// </summary>
         public static string Email {
             get {
                 return ResourceManager.GetString("Email", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to English.
+        /// </summary>
+        public static string English {
+            get {
+                return ResourceManager.GetString("English", resourceCulture);
             }
         }
         
@@ -268,6 +403,15 @@ namespace Bloggie.Web.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Language.
+        /// </summary>
+        public static string Language {
+            get {
+                return ResourceManager.GetString("Language", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Login.
         /// </summary>
         public static string Login {
@@ -282,6 +426,15 @@ namespace Bloggie.Web.Resources {
         public static string Logout {
             get {
                 return ResourceManager.GetString("Logout", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Manage Carousel.
+        /// </summary>
+        public static string ManageCarousel {
+            get {
+                return ResourceManager.GetString("ManageCarousel", resourceCulture);
             }
         }
         
@@ -349,6 +502,15 @@ namespace Bloggie.Web.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Preview.
+        /// </summary>
+        public static string Preview {
+            get {
+                return ResourceManager.GetString("Preview", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Previous.
         /// </summary>
         public static string Previous {
@@ -372,6 +534,15 @@ namespace Bloggie.Web.Resources {
         public static string PublishedDate {
             get {
                 return ResourceManager.GetString("PublishedDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Read More.
+        /// </summary>
+        public static string ReadMore {
+            get {
+                return ResourceManager.GetString("ReadMore", resourceCulture);
             }
         }
         
@@ -417,6 +588,24 @@ namespace Bloggie.Web.Resources {
         public static string Search {
             get {
                 return ResourceManager.GetString("Search", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select Images.
+        /// </summary>
+        public static string SelectImages {
+            get {
+                return ResourceManager.GetString("SelectImages", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select Topic.
+        /// </summary>
+        public static string SelectTopic {
+            get {
+                return ResourceManager.GetString("SelectTopic", resourceCulture);
             }
         }
         
@@ -507,6 +696,24 @@ namespace Bloggie.Web.Resources {
         public static string TheFutureOfRenewableEnergySources {
             get {
                 return ResourceManager.GetString("TheFutureOfRenewableEnergySources", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Topics.
+        /// </summary>
+        public static string Topics {
+            get {
+                return ResourceManager.GetString("Topics", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Turkish.
+        /// </summary>
+        public static string Turkish {
+            get {
+                return ResourceManager.GetString("Turkish", resourceCulture);
             }
         }
         

@@ -1,0 +1,28 @@
+﻿@model Bloggie.Web.Models.ViewModels.EditCarouselImageRequest
+
+<div class="container mt-3">
+    <h2 class="mb-3">@Resource.EditCarouselImage - @Resource.Admin</h2>
+    <form method="post" asp-action="CarouselEdit" enctype="multipart/form-data">
+        <input type="hidden" asp-for="Id" />
+
+        <div class="mb-3">
+            <label>@Resource.CurrentImage</label>
+            <div>
+                <img src="@Model.CurrentImageUrl" width="200" />
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <label>@Resource.ChangeImage</label>
+            <input type="file" class="form-control" name="file" />
+            <input type="hidden" asp-for="CurrentImageUrl" />
+        </div>
+
+        <div class="mb-3">
+            <label>@Resource.DisplayOrder</label>
+            <input type="number" class="form-control" asp-for="DisplayOrder" />
+        </div>
+
+        <button type="submit" class="btn btn-primary">@Resource.Update</button>
+    </form>
+</div>

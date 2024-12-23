@@ -1,8 +1,13 @@
-﻿using Bloggie.Web.Repositories;
+﻿
+
+using Bloggie.Web.Models.ViewModels;
+using Bloggie.Web.Repositories;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Bloggie.Web.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class TopicsController : Controller
     {
         private readonly ITopicRepository topicRepository;
@@ -27,5 +32,21 @@ namespace Bloggie.Web.Controllers
             ViewBag.Topic = topic;
             return View(relatedPosts);
         }
+        [HttpPost]
+        public async Task<IActionResult> Delete(EditTopicRequest editTopicRequest)
+        {
+            // Talk to repository to delete this blog post and tags
+            var deletedTopic = await topicRepository.DeleteAsync(editTopicRequest.Id);
+
+            if (deletedTopic != null)
+            {
+                // Show success notification
+                return RedirectToAction("List");
+            }
+
+            // Show error notification
+            return RedirectToAction("Edit", new { id = editTopicRequest.Id });
+        }
+
     }
 }

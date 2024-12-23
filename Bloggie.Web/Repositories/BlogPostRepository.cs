@@ -19,6 +19,12 @@ namespace Bloggie.Web.Repositories
             await bloggieDbContext.SaveChangesAsync();
             return blogPost;
         }
+        public async Task<IEnumerable<BlogPost>> GetPostsByTopicAsync(Guid topicId, string lang)
+        {
+            return await bloggieDbContext.BlogPosts
+                .Where(bp => bp.TopicId == topicId && bp.Lang == lang && bp.Visible)
+                .ToListAsync();
+        }
         public async Task<IEnumerable<BlogPost>> GetByTagAsync(string tagName)
         {
             return await bloggieDbContext.BlogPosts
@@ -41,6 +47,8 @@ namespace Bloggie.Web.Repositories
 
             return null;
         }
+
+
 
         public async Task<IEnumerable<BlogPost>> GetAllAsync()
         {

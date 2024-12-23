@@ -14,7 +14,7 @@ namespace Bloggie.Web.Repositories
         Task<IEnumerable<BlogPost>> GetByTagAsync(string tagName);
 
         Task<BlogPost?> UpdateAsync(BlogPost blogPost);
-
+        Task<IEnumerable<BlogPost>> GetPostsByTopicAsync(Guid topicId, string lang);
         Task<BlogPost?> DeleteAsync(Guid id);
     }
 }

@@ -27,21 +27,21 @@ namespace Bloggie.Web.Data
                 new IdentityRole
                 {
                     Name= "Admin",
-                    NormalizedName = "Admin",
+                    NormalizedName = "ADMIN",
                     Id = adminRoleId,
                     ConcurrencyStamp = adminRoleId
                 },
                 new IdentityRole
                 {
                     Name = "SuperAdmin",
-                    NormalizedName = "SuperAdmin",
+                    NormalizedName = "SUPERADMIN",
                     Id = superAdminRoleId,
                     ConcurrencyStamp = superAdminRoleId
                 },
                 new IdentityRole
                 {
                     Name = "User",
-                    NormalizedName = "User",
+                    NormalizedName = "USER",
                     Id = userRoleId,
                     ConcurrencyStamp = userRoleId
                 }

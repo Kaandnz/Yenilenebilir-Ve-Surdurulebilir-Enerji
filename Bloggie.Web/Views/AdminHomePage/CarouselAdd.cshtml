@@ -1,0 +1,13 @@
+﻿@{
+    ViewData["Title"] = "@Resource.AddCarouselImages";
+}
+
+<div class="container mt-3">
+    <h2 class="mb-3">@Resource.AddCarouselImages - @Resource.Admin</h2>
+    <form method="post" asp-action="CarouselAdd" enctype="multipart/form-data">
+        <div class="mb-3">
+            <input type="file" class="form-control" name="files" multiple />
+        </div>
+        <button type="submit" class="btn btn-primary">@Resource.Save</button>
+    </form>
+</div>

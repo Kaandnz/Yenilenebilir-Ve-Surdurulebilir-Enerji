@@ -1,25 +1,85 @@
 ﻿@using Bloggie.Web.Repositories
+@inject IBlogPostRepository blogPostRepository
 @inject ITopicRepository topicRepository
-
-
+<link rel="stylesheet" href="css/sidebars.css">
 <nav id="sidebarMenu" class="sidebar bg-white border-end flex-shrink-0" style="width: 250px;">
     <div class="position-sticky">
-        <div class="list-group list-group-flush mx-3 mt-4">
-           
-            
-
+        <div class="list-group list-group-flush mx-2 mt-4">
             @{
                 var topics = await topicRepository.GetAllAsync();
                 string currentCulture = Thread.CurrentThread.CurrentUICulture.TwoLetterISOLanguageName;
             }
-
-            <div class="list-group">
+            <h2 class="text-center mb-4">@Resource.Topics</h2>
+            <!-- Dynamic Collapsible Topics List -->
+            <div class="accordion" id="topicsAccordion">
                 @foreach (var t in topics)
                 {
                     var displayName = (currentCulture == "tr") ? t.DisplayNameTr : t.DisplayNameEn;
-                    <a asp-controller="Topics" asp-action="Details" asp-route-id="@t.Id" class="list-group-item">@displayName</a>
+                    var collapseId = $"collapse-{t.Id}";
+
+                    <div class="accordion-item my-3 shadow-sm">
+                        <h6 class="accordion-header d-flex align-items-center justify-content-between" id="heading-@t.Id">
+                            <a asp-controller="Topics" asp-action="Details" asp-route-id="@t.Id"
+                               class="text-decoration-none flex-grow-1 px-2 text-nowrap fw-bold">
+                                @displayName
+                            </a>
+                            
+                            <button class="btn btn-link accordion-button no-bg collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#@collapseId" aria-expanded="false" aria-controls="@collapseId">
+                                
+                            </button>
+                        </h6>
+                        <div id="@collapseId" class="accordion-collapse collapse" aria-labelledby="heading-@t.Id"
+                             data-bs-parent="#topicsAccordion">
+                            <div class="accordion-body p-2">
+                                @{
+                                    // Belirli bir konuya ve dile göre blog gönderilerini alın
+                                    var blogPosts = await blogPostRepository.GetPostsByTopicAsync(t.Id, currentCulture);
+                                }
+                                @if (blogPosts != null && blogPosts.Any())
+                                {
+                                    <div class="list-group">
+                                        @foreach (var blogPost in blogPosts)
+                                        {
+                                            <a class="list-group-item list-group-item-action d-flex align-items-center mb-2 rounded"
+                                               asp-area=""
+                                               asp-controller="Blogs"
+                                               asp-action="Index"
+                                               asp-route-urlHandle="@blogPost.UrlHandle">
+                                                <img src="@blogPost.FeaturedImageUrl" alt="@blogPost.Heading" class="me-3 rounded" style="width:40px; height:40px; object-fit:cover;">
+                                                <span class="fs-6">@blogPost.Heading</span>
+                                            </a>
+                                        }
+                                    </div>
+                                }
+                                else
+                                {
+                                    <p class="text-muted">@($"{displayName} için gönderi bulunamadı.")</p>
+                                }
+                            </div>
+                        </div>
+                    </div>
                 }
             </div>
         </div>
     </div>
 </nav>
+
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const buttons = document.querySelectorAll(".accordion-button");
+        buttons.forEach(button => {
+            button.addEventListener("click", function () {
+                const icon = this.querySelector(".rotate-icon");
+                if (icon) {
+                    icon.classList.toggle("rotate");
+                }
+            });
+        });
+    });
+</script>

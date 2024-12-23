@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc.Rendering;
+﻿
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Bloggie.Web.Models.ViewModels
 {
@@ -14,7 +15,9 @@ namespace Bloggie.Web.Models.ViewModels
         public string Author { get; set; }
         public bool Visible { get; set; }
         public Guid? SelectedTopicId { get; set; }
+        
         public IEnumerable<SelectListItem> Topics { get; set; } = new List<SelectListItem>();
+        public string Lang { get; set; }
 
         // Display tags
         public IEnumerable<SelectListItem> Tags { get; set; } = new List<SelectListItem>();

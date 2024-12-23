@@ -15,6 +15,8 @@ namespace Bloggie.Web.Data
         public DbSet<BlogPostLike> BlogPostLike { get; set; }
         public DbSet<BlogPostComment> BlogPostComment { get; set; }
         public DbSet<Topic> Topics { get; set; }
+        public DbSet<HomePageCarouselImage> HomePageCarouselImages { get; set; }
+        public DbSet<HomePageSetting> HomePageSettings { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

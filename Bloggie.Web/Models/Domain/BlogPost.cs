@@ -1,4 +1,7 @@
-﻿namespace Bloggie.Web.Models.Domain
+﻿
+using System.ComponentModel.DataAnnotations;
+
+namespace Bloggie.Web.Models.Domain
 {
     public class BlogPost
     {
@@ -15,6 +18,9 @@
 
         public Guid? TopicId { get; set; }
         public Topic Topic { get; set; }
+
+        public string Lang { get; set; }
+
 
 
         // Navigation property

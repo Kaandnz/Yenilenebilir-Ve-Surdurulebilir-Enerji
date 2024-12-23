@@ -1,26 +1,26 @@
 ﻿@model Bloggie.Web.Models.ViewModels.AddTopicRequest
 
-<div class="container">
-    <h2>Add New Topic</h2>
+<div class="container mt-3">
+    <h2 class="mb-3">@Resource.AddNewTopics - @Resource.Admin</h2>
 
     <form method="post">
         <div class="mb-3">
-            <label class="form-label">DisplayName (EN)</label>
+            <label class="form-label">@Resource.DisplayName (EN)</label>
             <input class="form-control" asp-for="DisplayNameEn" />
             <span class="text-danger" asp-validation-for="DisplayNameEn"></span>
         </div>
 
         <div class="mb-3">
-            <label class="form-label">DisplayName (TR)</label>
+            <label class="form-label">@Resource.DisplayName (TR)</label>
             <input class="form-control" asp-for="DisplayNameTr" />
             <span class="text-danger" asp-validation-for="DisplayNameTr"></span>
         </div>
 
         <div class="mb-3">
-            <label class="form-label">Featured Image URL</label>
+            <label class="form-label">@Resource.ImageURL</label>
             <input class="form-control" asp-for="FeaturedImageUrl" />
         </div>
 
-        <button type="submit" class="btn btn-dark">Save</button>
+        <button type="submit" class="btn btn-dark">@Resource.Save</button>
     </form>
 </div>

@@ -89,3 +89,85 @@ body {
         font-size: 1.2rem; /* Sosyal medya ikon boyutu */
         margin-right: 10px;
     }
+
+
+
+
+.accordion-header .text-decoration-none {
+    flex-grow: 1;
+    min-width: 0;
+    white-space: normal;
+    overflow: visible;
+}
+
+.accordion-button {
+    width: 40px;
+    justify-content: center;
+}
+
+    .accordion-button.no-bg {
+        background-color: transparent !important;
+        border: none !important;
+        box-shadow: none !important;
+    }
+
+        .accordion-button.no-bg:focus {
+            outline: none !important;
+            box-shadow: none !important;
+        }
+
+
+.rotate-icon {
+    transition: transform 0.3s ease;
+}
+
+    .rotate-icon.rotate {
+        transform: rotate(180deg);
+    }
+
+
+.accordion-header .accordion-button {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+}
+
+
+.accordion-item {
+    border: 1px solid #dee2e6;
+    border-radius: 5px;
+}
+
+    .accordion-item + .accordion-item {
+        margin-top: 10px;
+    }
+
+
+    .accordion-item:not(:first-child) {
+        border-top: 1px solid #dee2e6;
+    }
+
+
+.text-nowrap {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.list-group-item:hover {
+    background-color: #f8f9fa;
+    transition: background-color 0.3s ease;
+}
+
+.list-group-item {
+    display: flex;
+    align-items: center;
+}
+
+    .list-group-item img {
+        flex-shrink: 0;
+    }
+
+    .list-group-item:not(:first-child) {
+        border-top: 1px solid #dee2e6;
+    }
