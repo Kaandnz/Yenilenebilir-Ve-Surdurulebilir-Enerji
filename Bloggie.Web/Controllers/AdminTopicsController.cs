@@ -32,7 +32,10 @@ namespace Bloggie.Web.Controllers
                 Id = Guid.NewGuid(),
                 DisplayNameEn = model.DisplayNameEn,
                 DisplayNameTr = model.DisplayNameTr,
-                FeaturedImageUrl = model.FeaturedImageUrl
+                FeaturedImageUrl = model.FeaturedImageUrl,
+                TopicDetailsEn = model.TopicDetailsEn,
+                TopicDetailsTr = model.TopicDetailsTr
+                
             };
 
             await topicRepository.AddAsync(topic);
@@ -57,7 +60,9 @@ namespace Bloggie.Web.Controllers
                 Id = topic.Id,
                 DisplayNameEn = topic.DisplayNameEn,
                 DisplayNameTr = topic.DisplayNameTr,
-                FeaturedImageUrl = topic.FeaturedImageUrl
+                FeaturedImageUrl = topic.FeaturedImageUrl,
+                TopicDetailsEn = topic.TopicDetailsEn,
+                TopicDetailsTr = topic.TopicDetailsTr
             };
 
             return View(editModel);
@@ -73,7 +78,9 @@ namespace Bloggie.Web.Controllers
                 Id = model.Id,
                 DisplayNameEn = model.DisplayNameEn,
                 DisplayNameTr = model.DisplayNameTr,
-                FeaturedImageUrl = model.FeaturedImageUrl
+                FeaturedImageUrl = model.FeaturedImageUrl,
+                TopicDetailsEn = model.TopicDetailsEn,
+                TopicDetailsTr = model.TopicDetailsTr
             };
 
             var updated = await topicRepository.UpdateAsync(topic);

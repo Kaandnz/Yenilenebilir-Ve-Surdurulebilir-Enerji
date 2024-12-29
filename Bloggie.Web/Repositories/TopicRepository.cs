@@ -38,6 +38,8 @@ namespace Bloggie.Web.Repositories
                 existing.DisplayNameEn = topic.DisplayNameEn;
                 existing.DisplayNameTr = topic.DisplayNameTr;
                 existing.FeaturedImageUrl = topic.FeaturedImageUrl;
+                existing.TopicDetailsTr = topic.TopicDetailsTr;
+                existing.TopicDetailsEn = topic.TopicDetailsEn;
 
                 await db.SaveChangesAsync();
                 return existing;

@@ -13,6 +13,8 @@ namespace Bloggie.Web.Models.Domain
 
         // Topic sayfasının üstünde göstereceğimiz arkaplan/fon resmi (opsiyonel)
         public string? FeaturedImageUrl { get; set; }
+        public string? TopicDetailsTr {  get; set; }
+        public string? TopicDetailsEn { get; set; }
 
         // Bu Topic'e ait Blog Post koleksiyonu
         public ICollection<BlogPost> BlogPosts { get; set; }

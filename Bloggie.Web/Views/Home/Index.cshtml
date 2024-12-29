@@ -1,11 +1,27 @@
 ﻿@using Bloggie.Web.Repositories
 @inject IHomePageRepository homePageRepo
+@inject IBlogPostRepository blogPostRepository
+@inject ITopicRepository topicRepository
+
 
 @{
+    string currentCulture = Thread.CurrentThread.CurrentUICulture.TwoLetterISOLanguageName;
+    var topics = await topicRepository.GetAllAsync();
+
     var carouselImages = await homePageRepo.GetAllCarouselImagesAsync();
     var setting = await homePageRepo.GetHomePageSettingAsync();
 }
+<style>
 
+    .hover-effect {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+        .hover-effect:hover {
+            transform: scale(1.02); 
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2); 
+        }
+</style>
 
 <div class="d-flex flex-row">
 
@@ -24,11 +40,11 @@
                 @for (int i = 0; i < carouselImages.Count(); i++)
                 {
                     <button type="button"
-                            data-bs-target="#carouselExampleIndicators"
-                            data-bs-slide-to="@i"
-                            class="@(i == 0 ? "active" : "")"
-                            aria-current="@(i == 0 ? "true" : "false")"
-                            aria-label="Slide @(i + 1)">
+                    data-bs-target="#carouselExampleIndicators"
+                    data-bs-slide-to="@i"
+                    class="@(i == 0 ? "active" : "")"
+                    aria-current="@(i == 0 ? "true" : "false")"
+                    aria-label="Slide @(i + 1)">
                     </button>
                 }
             </div>
@@ -41,11 +57,11 @@
                 {
                     <div class="carousel-item @(index == 0 ? "active" : "")">
                         <img src="@img.ImageUrl"
-                             class="d-block w-100 img-fluid shadow border-"
-                             alt="Slide @index"
-                             style="height: 400px; object-fit: cover; border-radius: 15px;" />
+                        class="d-block w-100 img-fluid shadow border-"
+                        alt="Slide @index"
+                        style="height: 400px; object-fit: cover; border-radius: 15px;" />
                         <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-50 rounded p-2">
-                            
+
                         </div>
                     </div>
                     index++;
@@ -53,14 +69,14 @@
             </div>
 
             <button class="carousel-control-prev" type="button"
-                    data-bs-target="#carouselExampleIndicators"
-                    data-bs-slide="prev">
+            data-bs-target="#carouselExampleIndicators"
+            data-bs-slide="prev">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                 <span class="visually-hidden">Previous</span>
             </button>
             <button class="carousel-control-next" type="button"
-                    data-bs-target="#carouselExampleIndicators"
-                    data-bs-slide="next">
+            data-bs-target="#carouselExampleIndicators"
+            data-bs-slide="next">
                 <span class="carousel-control-next-icon" aria-hidden="true"></span>
                 <span class="visually-hidden">Next</span>
             </button>
@@ -77,6 +93,27 @@
                 <p>No body content has been set yet!</p>
             }
         </section>
+        <div class="content flex-grow-1 p-2">
+            <div class="container shadow-sm rounded bg-white">
+                <div class="row">
+                    @foreach (var t in topics)
+                    {
+                        var displayName = (currentCulture == "tr") ? t.DisplayNameTr : t.DisplayNameEn;
 
+                    <div class="col-lg-4 col-md-6 col-sm-12 mb-4 mt-3">
+                        <div class="card h-100 hover-effect">
+                                <a class="text-decoration-none text-black" asp-controller="Topics" asp-action="Details" asp-route-id="@t.Id">
+                                    <img src="@t.FeaturedImageUrl" class="card-img-top img-fluid" style="height: 180px; object-fit: cover;" />
+                                    <div class="card-body p-3 text-center">
+                                        <h5 class="card-title">@displayName</h5>
+                                    </div>
+                                </a>
+                        </div>
+                    </div>
+                    }
+
+                </div>
+            </div>
+        </div>
     </div>
 </div>

@@ -19,27 +19,21 @@
         border-radius: 15px;
         box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
         display: flex;
-        align-items: flex-end;
+        align-items: flex-start;
         justify-content: center;
-        padding-bottom: 20px;">
+        padding-top: 20px;">
 
-        <div style="
-            background-color: rgba(255, 255, 255, 0.3);
-            backdrop-filter: blur(5px);
-            padding: 15px 30px;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);">
-            <p class="display-5 text-dark text-center">
-                @if(currentCulture == "tr"){
+    </div>
 
-                    <h1>@displayName Dünyasını Keşfedin</h1>
-                }
-                else
-                {
-                    <h1>Explore the World of @displayName</h1>
-                }    
-            </p>
-        </div>
+    <div class="bg-light rounded-3 shadow-sm p-3 mt-3">
+        @if(currentCulture == "tr"){
+            @Html.Raw(topic.TopicDetailsTr)
+        }
+        else{
+            @Html.Raw(topic.TopicDetailsEn)
+
+        }
+        
     </div>
 
     <div class="content flex-grow-1 p-4">

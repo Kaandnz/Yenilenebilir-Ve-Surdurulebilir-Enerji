@@ -7,7 +7,6 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Bloggie.Web.Controllers
 {
-    [Authorize(Roles = "Admin")]
     public class TopicsController : Controller
     {
         private readonly ITopicRepository topicRepository;
